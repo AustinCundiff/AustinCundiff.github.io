@@ -1,37 +1,9 @@
-## Welcome to GitHub Pages
+## Background
+I have been in the offensive cyber community for 6 years as a penetration tester and I've been a bug bounty hunter for 1 year. I exclusively hunt on Synack's Red Team Platform, although I hunted briefly on HackerOne's public programs. In my spare time, I love spending time with my wife and son, playing video games, and playing tabletop RPGs.
 
-You can use the [editor on GitHub](https://github.com/AustinCundiff/AustinCundiff.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+## Blog Posts
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+* [Backend Parameter Pollution to RCE](/_pages/2022-06-03-parameter-injection-to-rce.md)
+* [XXE to RCE as System](/_pages/2022-06-04-XXE-to-system.md)
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/AustinCundiff/AustinCundiff.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+You can follow me on twitter at [@systemdumb](https://twitter.com/systemdumb)
