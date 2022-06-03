@@ -1,1 +1,4 @@
+title: Some write-ups of me finding dumb stuff
 theme: jekyll-theme-tactile
+twitter_username: systemdumb
+permalink: /:collection/:year-:month-:day-:title:output_ext
