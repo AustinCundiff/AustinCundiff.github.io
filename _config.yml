@@ -1,7 +1,7 @@
 title: Some write-ups of me finding dumb stuff
 theme: jekyll-theme-tactile
 twitter_username: systemdumb
-#permalink: /:title
+permalink: /:title
 url: "http://blog.sysdum.net"
 author: "Austin Cundiff"
 
@@ -9,34 +9,7 @@ author: "Austin Cundiff"
 # All of these are optional and can be removed or commented out
 twitter_username: "@systemDumb"
 github_username: "AustinCundiff"
-#facebook_username: username
-#flickr_username: username
-#instagram_username: username
-#pinterest_username: username
-#youtube_username: username
-#googleplus_username: +username
 
-#########################################################################################
-######### Nothing below needs to be changed (unless you know what you're doing) #########
-#########################################################################################
-
-rss: rss
-
-kramdown:
-  syntax_highlighter_opts:
-    disable: true
-    
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-
-titles_from_headings:
-  strip_title: true
-  collections: true
-
-defaults:
-  - scope:
-      path: ""
-      type: post
-    values:
-      tags: Other
