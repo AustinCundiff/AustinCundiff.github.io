@@ -1,4 +1,4 @@
-## Blog Posts
+### Bug Bounty Write-ups
 
 * [Application Hacker Methodology](/application-hacking-methodology)
 
