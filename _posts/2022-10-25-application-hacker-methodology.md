@@ -1,6 +1,6 @@
 ---
-layout: post
-title:  "Welcome to Jekyll!"
+layout: default
+title:  "Part 1: Recon"
 date:   2022-10-25 11:02:21 +0100
 author: sysdum
 ---
