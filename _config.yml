@@ -2,9 +2,9 @@ title: Some write-ups of me finding dumb stuff
 theme: jekyll-theme-tactile
 twitter_username: systemdumb
 permalink: /:title
-#url: "http://blog.sysdum.net"
+url: "https://AustinCundiff.github.io"
 author: "Austin Cundiff"
-
+markdown: kramdown
 # Email / Social media user names used by the minima theme:
 # All of these are optional and can be removed or commented out
 twitter_username: "@systemDumb"
