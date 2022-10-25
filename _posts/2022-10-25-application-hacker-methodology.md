@@ -1,11 +1,6 @@
----
-layout: post
-title:  "My Application Hacking Approach Part 1: Recon"
-theme: jekyll-theme-tactile
----
+## Application Hacker Methodology Part 1: Recon
 
-
-## Introduction
+### Introduction
 
 This guide is about assessing an organization's attack surface through the lens of application security. Web Application Firewalls (WAFs) and automated scanners have still not managed to solve the attack surface problem. These are both important tools in your arsenal, but I've seen critical vulnerabilities slip by every major WAF. Nuclei is a great way to scan your environment for the latest exchange 0-day, but if your recon is subpar, you might miss one. That is all that an adversary needs for a foothold in your environment.
 
