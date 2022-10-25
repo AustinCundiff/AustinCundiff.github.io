@@ -1,8 +1,8 @@
 title: Some write-ups of me finding dumb stuff
 theme: jekyll-theme-tactile
 twitter_username: systemdumb
-permalink: /:title
-url: "https://blog.sysdum.net"
+#permalink: /:title
+url: "http://blog.sysdum.net"
 author: "Austin Cundiff"
 
 # Email / Social media user names used by the minima theme:
