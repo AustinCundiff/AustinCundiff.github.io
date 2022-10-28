@@ -24,9 +24,10 @@ Ultimately the answers to these questions depend on what the organization define
 
 ## Reconnaissance 🕵
 
-> Note: This guide is focused on application security. Thus, We will not be covering phishing, social engineering, or post-exploitation.
+>Note: This guide is focused on application security. Thus, We will not be covering phishing, social engineering, or post-exploitation.
 
 ### Our Goals for this phase
+
 * Map as many of the target's online endpoints as possible 
   * Collect subdomains
   * Find those endpoints they don't want you to know about
@@ -44,8 +45,10 @@ If you're interested in a case study on poor asset management, you can [read](ht
 Now let's dive into how you can look for potentially sensitive or forgotten assets.
 
 >Note: this guide assumes access to a Linux distribution such as Kali, Parrot, Ubuntu, WSL, etc. 
+
 #### Gathering domains
-**Tools used:**
+
+*Tools used:*
 - [**Amass**](https://github.com/OWASP/Amass)
 - [**Assetfinder**](https://github.com/tomnomnom/assetfinder)
 - [**Subfinder**](https://github.com/projectdiscovery/subfinder)
@@ -54,7 +57,7 @@ Now let's dive into how you can look for potentially sensitive or forgotten asse
 - [**Anew**](https://github.com/tomnomnom/anew)
 - [**httpx**](https://github.com/projectdiscovery/httpx)
 
-> Note: If you would like to see steps on installing any tools in this guide, please navigate to the tools appendix. 
+>Note: If you would like to see steps on installing any tools in this guide, please navigate to the tools appendix. 
 
 In this step, we're looking to gather as many subdomains or assets as possible within the scope of our assessment. In the code snippet below, we will utilize several tools to map out the attack surface of example.com
 
@@ -62,16 +65,20 @@ Amass will query various online resources for your target domain including TLS c
 ```
 amass enum -d example.com -o amass1.txt
 ```
+
 Next, we will use Tomnomnom's assetfinder to locate other assets that amass may have missed.
+
 ```sh
 assetfinder example.com >> assetfinder1.txt
 ```
 Next, we will feed our domains to subfinder to increase our coverage. We will also feed this output back into subfinder to crawl further up the subdomains chains for additional endpoints.
+
 ```sh
 subfinder -d example.com -o subfinder1.txt
 cat assetfinder1.txt subfinder1.txt amass1.txt subfinder1.txt | anew subfinder.txt
 subfinder -dL subfinder.txt -o full -timeout 5 -silent | anew domains
 ```
+
 Finally, let's leverage additional passive scanning tools to generate even more domains we may have missed
 ```sh
 GITHUB_TOKEN=YOUR_GITHUB_TOKEN_HERE ~/git/github-subdomains/github-subdomains -d example.com -o gitdoms
@@ -87,17 +94,23 @@ mail.example.com
 int.example.com
 stg-www-example.com 
 ```
+
 Optional step: You can use dnsgen to guess additional subdomains based on your current domain list. So if you feed the above excerpt of `example.com` domains, dns-gen will try to guess `int2.example.com`, `mail-stg.example.com`, `int-stg-mail.example.com` and so on. [Link to dnsgen](https://github.com/ProjectAnte/dnsgen) and [Link to resolvers.txt](https://github.com/blechschmidt/massdns/blob/master/lists/resolvers.txt)
+
 ```sh
 # Generate and brute force new domains based on pre-discovered domains. 
 cat domains | dnsgen - | massdns -r ~/resolvers.txt -t A -o L --flush 2>/dev/null | anew dns-gen-domains
 cat dns-gen-domains | anew domains && rm -f dns-gen-domains
 ```
+
 Finally, I will use grep to ensure that we stick to our scope: (this assumes a scope of *.example.com). If you skip this step, you will potentially have a lot of junk in your domain list that isn't related to your target organization. It will waste your time and resources, so it's better to filter now rather than later.
+
 ```sh
 grep "example.com" domains > in-scope-domains
 ```
+
 #### Finding active endpoints
+
 I prefer httpx from projectdiscovery for mapping out online hosts. Some folks prefer masscan or nmap. It doesn't really matter what tool you use, as long as you like the output format and it is performant.
 
 In the below snippet, httpx will retry 3 times on ports 80,443,8080, and 8443. I also placed a rate-limit of 50 requests per second. The default is 150, but I find that I can sometimes get filtered early on if the target organization utilizes certain CDNs. In some cases I've had to drop it to 1 request per second so that I could accurately map endpoints without getting dropped. 
@@ -106,9 +119,9 @@ In the below snippet, httpx will retry 3 times on ports 80,443,8080, and 8443. I
 cat in-scope-domains | httpx -retries 3 -random-agent -p 80,443,8080,8443 -rl 50 | anew online-hosts 
 ```
 
-> Due to the fact that our domains file can be tens of thousands of entries, the above line may take a while. I usually fill this time by looking through shodan or censys results using the `hostname:*.example.com` and `org:example company, llc` filters to manually inspect strange ports or technologies that I don't typically scan for. 
+>Due to the fact that our domains file can be tens of thousands of entries, the above line may take a while. I usually fill this time by looking through shodan or censys results using the `hostname:*.example.com` and `org:example company, llc` filters to manually inspect strange ports or technologies that I don't typically scan for. 
 
-***SCREENSHOTS OF SHODAN QUERY RESULTS***
+![Shodan Query](/assets/shodan-query.JPG)
 
 After it finishes, the result will be a link of the format `https://sub.example.com:port` on each line. 
 
@@ -120,6 +133,7 @@ This concludes the reconnaissance portion.
 
 ## Content Discovery 🔭
 ### Our Goal for this phase
+
 * Look for internal or sensitive titles/domains (Exposed JBOSS, Jenkins, PeopleSoft, Solr, MongoDB, etc.)
 * Identify technology stacks used in the target environment (Apache Tomcat, Citrix, VMWare, Wordpress)
 * Find applications we can interact with that accept input. 
@@ -127,7 +141,9 @@ This concludes the reconnaissance portion.
 > Note if you are performing a white-box assessment, you can probably skip to identifying data entry points. The below is really only useful for black-box assessments where you have no way of knowing what applications are hosted on what endpoints.
 
 ### Tools for this phase
-* Choose one: [**Feroxbuster**](https://github.com/epi052/feroxbuster) || [**Ffuf**](https://github.com/ffuf/ffuf) || [**Gobuster**](https://github.com/OJ/gobuster) || [**Turbo** Intruder](https://portswigger.net/bappstore/9abaa233088242e8be252cd4ff534988)
+
+Choose one: [**Feroxbuster**](https://github.com/epi052/feroxbuster) || [**Ffuf**](https://github.com/ffuf/ffuf) || [**Gobuster**](https://github.com/OJ/gobuster) || [**Turbo** Intruder](https://portswigger.net/bappstore/9abaa233088242e8be252cd4ff534988)
+
 * [**httpx**](https://github.com/projectdiscovery/httpx)
 * [**Wappalyzer**](https://addons.mozilla.org/en-US/firefox/addon/wappalyzer/)
 * [**Waybackurls**](https://github.com/tomnomnom/waybackurls)
@@ -221,6 +237,7 @@ I spend a good amount of time from here reviewing the output on each url file. H
 If you find something interesting, skip the content discovery for now. You can and should return to this phase if you hit a wall when testing. 
 
 ### Forced Browsing
+
 However, If we strike out with the URLS, then we go with forced browsing. We will need a wordlist first. Here are a couple different wordlists repositories we can use:
 * [**The ultimate wordlist repo: SecLists**](https://github.com/danielmiessler/SecLists)
 * [**Assetnote has some excellent wordlists as well**](https://wordlists.assetnote.io/)
@@ -241,11 +258,11 @@ Let's break down the command:
 
 You can pause the scan at any time by hitting enter. You can add custom filters or cancel scans and then resume the scan. 
 
-***SCREENSHOT OF PAUSE***
+![Ferox Pause](/assets/pause-menu.png)
 
 Additionally, if you ctrl-c the scan you can use `--resume-from SATE_FILE` to pick up where you left off.
 
-***SCREENSHOT OF RESULTS***
+![Ferox results](/assets/ferox-save-state.png)
 
 Now that we have some directories, we hopefully have a lead on some parts of the application that were not intended for us. Examples of these types of directories would be:
 * Admin consoles
