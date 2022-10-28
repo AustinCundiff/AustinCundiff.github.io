@@ -1,8 +1,8 @@
 ---
 layout: default
-title:  "Part 1: Recon"
+title:  "Application Hacking Part 1: Recon"
 date:   2022-10-25 11:02:21 +0100
-author: sysdum
+author: Sysdum
 ---
 
 ## Application Hacker Methodology Part 1: Recon
@@ -173,7 +173,7 @@ There are a lot of options in this snippet, so I'll break it down:
 
 All of these together will result in the following list of titles and content lengths:
 
-***SCREENSHOT OF httpx title output GOES HERE***
+![Shodan Query](/assets/httpx.png)
 
 > Note: Most of these tools used below can be configured to output in JSON. Feel free to subtitute grep and vim with your text editor of choice. The idea is that we can easily filter out the junk with negative searches like egrep -v.
 
@@ -186,8 +186,6 @@ vim titles
 ```
 
 As you go through them, you will see similar titles and content lengths. For example, let's say your organization has 30 different static blogs. You can use egrep to filter the blog title `egrep -v "blog title" titles | less` or use vim `%! egrep -v blog-title`. I will also usually see the same site hosted for different countries such as au.example.com uk.example.com, etc. The content length and title should generally be the same and you can use the same filter tricks to remove the junk.
-
-***FILTERING SCREENSHOT GOES HERE***
 
 Here are the titles I'm usually interested in:
 - Not found --> Usually indicates something is being hosted, but without a redirect from the web root.
@@ -284,3 +282,12 @@ feroxbuser -w ~/git/SecLists/Discovery/Web-Content/raft-medium-files-lowercase.t
 At this point, it's rinse and repeat of fuzzing for directories and then fuzzing for files. If you're working on a restful API, then substitute files with API actions. This is due to APIs generally not being extension-based. I usually use a generic word-based list here or you can reuse an API-specific list from SecLists or Assetnote.  
 
 
+>Note: It is often good practice to repeat your reconnaissance periodically as you will often discover new endpoints as time goes on.
+
+### Conclusion 
+
+Our goal in this phase was to give ourselves a decent attack surface. This is probably the most widely covered phase within the web application testing realm and is by far the easiest. 
+
+Once you have a sufficent number of endpoints to examine, you will want to move into the next phase: Identifying Data Entry Points. We will take interesting sites and strive to fully understand the application and frameworks involved. Once we understand the access controls, we can examine them for flaws.
+
+This phase will be documented in the Application Hacking Methodology Part 2. 
