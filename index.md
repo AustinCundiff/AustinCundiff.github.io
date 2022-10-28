@@ -1,4 +1,4 @@
-### Road to RCE Blog Series
+### Road to RCE
 
 * [Application Hacker Methodology](/application-hacker-methodology)
 
