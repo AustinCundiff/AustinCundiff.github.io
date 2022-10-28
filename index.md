@@ -1,4 +1,4 @@
-### Bug Bounty Write-ups
+### Road to RCE Blog Series
 
 * [Application Hacker Methodology](/application-hacker-methodology)
 
