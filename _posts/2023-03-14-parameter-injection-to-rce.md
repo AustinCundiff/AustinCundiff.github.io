@@ -1,10 +1,9 @@
----
-
-layout: post  
-title: "Backend Parameter Injection -> RCE"
-
----
-
+---                                                                                                                                                                                                                                   
+layout: default
+title:  "Backend Parameter Injection --> RCE"
+date:   2023-03-14 11:02:21 0100
+author: Sysdum
+---  
 ### Background
 
 While hunting on a private program, I happened across a calculation web app. It was a pretty standard web form that accepted around 10 different numerical values, performed some calculations, then emailed the results back to the user. This behavior piqued my interest as I suspected that the application was passing the input to another server-side program.
