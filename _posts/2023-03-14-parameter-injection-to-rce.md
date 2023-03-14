@@ -13,7 +13,7 @@ This behavior piqued my interest as this was on a more obscure subdomain, it acc
 Here is an example of what the web form looked like:
 ![Web-Form](/assets/param-rce-web-form.jpg)
 
-After submitting the form a few times, I got the impression that the application was not being stored in any permanent manner and may instead be using temporary files. The parameters were also unusual, as there were many client-side checks to ensure the numbers were within an acceptable range for the back-end application. 
+Using Burp Suite's Repeater, I submitted the form a few times. The parameters were unusual, as there were many client-side checks to ensure the numbers were within an acceptable range for the back-end application. 
 
 After brute-forcing some numerical values, I finally got an email with output that seemed designed for a command line tool. I get excited any time I see back-end command line functionality reflected anywhere in a web app. Chances are decent that there may be a command injection vulnerability if we can figure out how to smuggle a command to the back-end service.
 
