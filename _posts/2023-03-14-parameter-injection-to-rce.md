@@ -8,7 +8,7 @@ author: Sysdum
 
 While hunting on a private program, I happened across a calculation web app. It was a pretty standard web form that accepted around 10 different numerical values, performed some calculations, then emailed the results back to the user. This behavior piqued my interest as I suspected that the application was passing the input to another server-side program.
 
-![Web-Form](/assets/param-rce-webform.jpg)
+![Web-Form](/assets/param-rce-web-form.jpg)
 
 I submitted the form a few times and after fumbling with the parameters, I got an email back with what looked like terminal output (the misaligned pipes are a dead giveaway).
 
