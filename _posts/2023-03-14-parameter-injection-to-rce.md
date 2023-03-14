@@ -4,10 +4,13 @@ title:  "Backend Parameter Injection --> RCE"
 date:   2023-03-14 11:02:21 0100
 author: Sysdum
 ---  
-### Background
+## Background
 
-While hunting on a private program, I happened across a calculation web app. It was a pretty standard web form that accepted around 10 different numerical values, performed some calculations, then emailed the results back to the user. This behavior piqued my interest as I suspected that the application was passing the input to another server-side program.
+After performing my recon on a private program, I came across a pretty standard web form that accepted around 10 different numerical values, performed some calculations, and then emailed the results back to the user. 
 
+This behavior piqued my interest as this was on a more obscure subdomain, it accepted a lot of variables, and probably passed input to something that wasn't designed for the web. 
+
+Here is an example of what the web form looked like:
 ![Web-Form](/assets/param-rce-web-form.jpg)
 
 I submitted the form a few times and after fumbling with the parameters, I got an email back with what looked like terminal output (the misaligned pipes are a dead giveaway).
@@ -18,7 +21,7 @@ Any time I find an interesting application, I first check if it is open-source s
 
 This raised several questions. Is this application passing data directly to CalcTool's configuration file? If so, can I exploit its behavior somehow?
 
-### CalcTool Code Review
+## CalcTool Code Review
 
 I looked over the sample configuration file on GitHub and found that the form values lined up exactly with the variables on the web form. This confirmed my suspicion that the web app was passing input to CalcTool. 
 
