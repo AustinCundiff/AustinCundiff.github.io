@@ -6,14 +6,16 @@ author: Sysdum
 ---  
 ## Background
 
-After performing my recon on a private program, I came across a pretty standard web form that accepted around 10 different numerical values, performed some calculations, and then emailed the results back to the user. 
+After performing my recon on a private program, I came across a pretty standard web form that accepted around 10 different numerical values, performed some calculations, and then emailed the results back to the user. The exact nature of the application was unknown to me as the math it was performing was well beyond what I have learned.
 
 This behavior piqued my interest as this was on a more obscure subdomain, it accepted a lot of variables, and probably passed input to something that wasn't designed for the web. 
 
 Here is an example of what the web form looked like:
 ![Web-Form](/assets/param-rce-web-form.jpg)
 
-I submitted the form a few times and after fumbling with the parameters, I got an email back with what looked like terminal output (the misaligned pipes are a dead giveaway).
+After submitting the form a few times, I got the impression that the application was not being stored in any permanent manner and may instead be using temporary files. The parameters were also unusual, as there were many client-side checks to ensure the numbers were within an acceptable range for the back-end application. 
+
+After brute-forcing some numerical values, I finally got an email with output that seemed designed for a command line tool. I get excited any time I see back-end command line functionality reflected anywhere in a web app. Chances are decent that there may be a command injection vulnerability if we can figure out how to smuggle a command to the back-end service.
 
 ![Email-Output](/assets/param-rce-email-output.jpg)
 
