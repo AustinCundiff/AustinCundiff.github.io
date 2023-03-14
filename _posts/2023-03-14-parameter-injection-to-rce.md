@@ -50,7 +50,7 @@ At this stage we know the following so far:
 *   There is only one form value that **we control** that is passed to a system() call within CalcTool, which is our best chance at exploitation.
 *   The goal is to find a way to pass something we control directly to that system call
 
-### Polluting the Configuration
+## Polluting the Configuration
 
 Bypassing filters can be tricky. In web applications, one common filter bypass technique is parameter pollution.
 
@@ -109,6 +109,7 @@ For this to work, the application would need to keep **only** the **last** decla
 
 This output means that the pollution worked!
 
+## Command Execution
 The next step was to prove a command injection vulnerability. Due to the mail command not retuning its output directly to me, this is essentially a blind command injection. Therefore, I needed an out-of-band method of exfiltrating data. I tried the following payload using Burp Collaborator:
 
 ```plaintext
