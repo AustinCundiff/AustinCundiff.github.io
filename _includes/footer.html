@@ -9,7 +9,9 @@
     </div>
 
     <div class="social-links">
-      {%- include social.html -%}
+      {% if site.social-media.twitter %}
+    <a href="https://www.twitter.com/{{ site.social-media.twitter }}" title="Twitter"><i class="fa fa-twitter-square"></i></a>
+      {% endif %}
     </div>
 
   </div>
