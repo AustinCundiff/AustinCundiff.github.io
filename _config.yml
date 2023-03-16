@@ -1,13 +1,12 @@
 title: Road to RCE
 #theme: jekyll-theme-tactile
-twitter_username: systemDumb
+twitter: systemDumb
 permalink: /:title
 url: "https://AustinCundiff.github.io"
 author: "Austin Cundiff"
 markdown: kramdown
 # Email / Social media user names used by the minima theme:
 # All of these are optional and can be removed or commented out
-twitter_username: "@systemDumb"
 github_username: "AustinCundiff"
 
 footer-links:
