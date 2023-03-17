@@ -10,21 +10,20 @@ layout: default
 
   <div>&nbsp;</div>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-
-        {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | absolute_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
-        </h2>
-
-        {{ post.excerpt | markdownify | strip_html | truncatewords: 50 }}
-
-      </li>
-    {% endfor %}
-  </ul>
+<div class="posts">                                                                                                                                                                                                                        
+   {% for post in site.posts %}                                                                                                                                                                                                             
+     <article class="post">                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                            
+       <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>                                                                                                                                                             
+                                                                                                                                                                                                                                            
+       <div class="entry">                                                                                                                                                                                                                  
+         {{ post.content | strip_html | truncatewords: 50 }}                                                                                                                                                                                
+       </div>                                                                                                                                                                                                                               
+                                                                                                                                                                                                                                            
+       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>                                                                                                                                                           
+     </article>                                                                                                                                                                                                                             
+   {% endfor %}                                                                                                                                                                                                                             
+ </div>
+ 
 
 </div>
