@@ -5,17 +5,21 @@ permalink: /:title
 url: "https://AustinCundiff.github.io"
 author: "Austin Cundiff"
 markdown: kramdown
+header_page_refs: ['about', 'contact']
 # Email / Social media user names used by the minima theme:
 # All of these are optional and can be removed or commented out
 github_username: "AustinCundiff"
 
-footer-links:
-  - twitter: systemDumb
-  - linkedin: austin-cundiff-7b015811a
- 
+#footer-links:
+#  - twitter: systemDumb
+#  - linkedin: austin-cundiff-7b015811a
+twitter:
+  username: systemDumb
+
+cayman-blog:
+  date_format: "%b %-d, %Y"
+theme:
 plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-remote-theme
+  - jekyll-target-blank
  
-remote_theme: pages-themes/cayman@v0.2.0
+#remote_theme: pages-themes/cayman@v0.2.0
