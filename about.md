@@ -3,12 +3,6 @@ layout: page
 title: About
 permalink: /about/
 ---
-## Why is this here?
-The goal of this blog is to help people get into web application security by sharing my experience with hunting in production environments. Many researchers get their start in a learning environment such as PortSwigger's platform or TryHackMe, but it can be a shock moving from these learning platforms to live networks.
-
-Prod is a strange place and I aim to give you a few tools that might make the journey a bit easier.
-
-
 ## About Me
 My name is Austin and I have been red teaming for around 7 years and bug hunting since the Fall of 2021. My bug-hunting experience has been mostly on Synack's Red Team platform with a few bugs on HackerOne. In the first 6 months as a researcher, I found quite a few duplicates and my other bugs were marked informational. My first actual payout was an information disclosure worth $90. At that point, I was close to quitting, but I took a break for a month, spent a lot of time studying, and then came back and discovered an RCE.
 
