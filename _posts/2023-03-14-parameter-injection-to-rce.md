@@ -13,7 +13,7 @@ This behavior piqued my interest as this was on a more obscure subdomain, it acc
 
 Using Burp Suite's Repeater, I submitted the form a few times. It took me a minute to successfully submit the form as there were many client-side checks to ensure the numbers were within the acceptable range for the back-end application. 
 
-After brute-forcing the form because I'm bad a math, I finally got an email with output that looked like it might have originated from a command line tool. I get excited any time I see back-end command line functionality reflected anywhere in a web app. Chances are decent that there may be a command injection vulnerability if we can figure out how to smuggle a command to the back-end service.
+After brute-forcing the form because I'm bad at math, I finally got an email with output that looked like it might have originated from a command line tool. I get excited any time I see back-end command line functionality reflected anywhere in a web app. Chances are decent that there may be a command injection vulnerability if we can figure out how to smuggle a command to the back-end service.
 
 ![Email-Output](/assets/param-rce-email-output.jpg)
 
