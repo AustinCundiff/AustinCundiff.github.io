@@ -113,7 +113,7 @@ grep "example.com" domains > in-scope-domains
 
 I prefer httpx from projectdiscovery for mapping out online hosts. Some folks prefer masscan or nmap. It doesn't really matter what tool you use, as long as you like the output format and it is performant.
 
-In the below snippet, httpx will retry 3 times on ports 80,443,8080, and 8443. I also placed a rate-limit of 50 requests per second. The default is 150, but I find that I can sometimes get filtered early on if the target organization utilizes certain CDNs. In some cases I've had to drop it to 1 request per second so that I could accurately map endpoints without getting dropped. 
+In the below snippet, httpx will retry 3 times on ports 80,443,8080, and 8443. I also placed a rate-limit of 50 requests per second. The default is 150, but I find that I can sometimes get filtered early on if the target organization utilizes certain CDNs. In some cases, I've had to drop it to 1 request per second so that I could accurately map endpoints without getting dropped. 
 
 ```sh
 cat in-scope-domains | httpx -retries 3 -random-agent -p 80,443,8080,8443 -rl 50 | anew online-hosts 
@@ -142,7 +142,7 @@ This concludes the reconnaissance portion.
 
 ### Tools for this phase
 
-Choose one: [**Feroxbuster**](https://github.com/epi052/feroxbuster) || [**Ffuf**](https://github.com/ffuf/ffuf) || [**Gobuster**](https://github.com/OJ/gobuster) || [**Turbo** Intruder](https://portswigger.net/bappstore/9abaa233088242e8be252cd4ff534988)
+Choose one: [**Feroxbuster**](https://github.com/epi052/feroxbuster) | [**Ffuf**](https://github.com/ffuf/ffuf) | [**Gobuster**](https://github.com/OJ/gobuster) | [**Turbo** Intruder](https://portswigger.net/bappstore/9abaa233088242e8be252cd4ff534988)
 
 * [**httpx**](https://github.com/projectdiscovery/httpx)
 * [**Wappalyzer**](https://addons.mozilla.org/en-US/firefox/addon/wappalyzer/)
@@ -175,7 +175,7 @@ All of these together will result in the following list of titles and content le
 
 ![Shodan Query](/assets/httpx.png)
 
-> Note: Most of these tools used below can be configured to output in JSON. Feel free to subtitute grep and vim with your text editor of choice. The idea is that we can easily filter out the junk with negative searches like egrep -v.
+> Note: Most of the tools used below can be configured to output in JSON. Feel free to substitute grep and vim with your text editor of choice. The idea is that we can easily filter out the junk with negative searches like egrep -v.
 
 Now it's time to go through our output. Depending on the number of endpoints, this could be large. I prefer to open the results in vim, but you can also page through it with less or another text editor like vscode or sublime.
 
@@ -188,7 +188,7 @@ vim titles
 As you go through them, you will see similar titles and content lengths. For example, let's say your organization has 30 different static blogs. You can use egrep to filter the blog title `egrep -v "blog title" titles | less` or use vim `%! egrep -v blog-title`. I will also usually see the same site hosted for different countries such as au.example.com uk.example.com, etc. The content length and title should generally be the same and you can use the same filter tricks to remove the junk.
 
 Here are the titles I'm usually interested in:
-- Not found --> Usually indicates something is being hosted, but without a redirect from the web root.
+- Not found --> Usually indicates something is being hosted but without a redirect from the web root.
 - Forbidden --> Occasionally has paths accessible that may be incorrectly configured and reveal sensitive information.
 - Sensitive title --> Titles that indicate sensitive information is stored on the application (SSN / billing / corp)
 - Esoteric technology banner --> Don't recognize the server? It's probably old and busted.
@@ -212,7 +212,7 @@ cat example.com-urls | anew urls
 ```
 This will result in a text file with a ton of links. Many of these will be garbage such as font or image files. Remember, we're looking for places that accept input, so static assets are generally of no interest.
 
-First I grab all queries such as `/endpoint?file=example.jpg` which are typically the bulk of our data entry points. Uro is a tool that will remove duplicate queries such as `/endpoint?file=example.png`. We already have the first query, and don't really care about additional file names being returned, especially if it's something like doc1.xlsx and doc2.xsls etc.
+First I grab all queries such as `/endpoint?file=example.jpg` which are typically the bulk of our data entry points. Uro is a tool that will remove duplicate queries such as `/endpoint?file=example.png`. We already have the first query and don't really care about additional file names being returned, especially if it's something like doc1.xlsx and doc2.xsls etc.
 ```sh
 egrep "\?" urls | uro | anew query-urls
 ```
@@ -236,7 +236,7 @@ If you find something interesting, skip the content discovery for now. You can a
 
 ### Forced Browsing
 
-However, If we strike out with the URLS, then we go with forced browsing. We will need a wordlist first. Here are a couple different wordlists repositories we can use:
+However, If we strike out with the URLS, then we go with forced browsing. We will need a wordlist first. Here are a couple of different wordlists repositories we can use:
 * [**The ultimate wordlist repo: SecLists**](https://github.com/danielmiessler/SecLists)
 * [**Assetnote has some excellent wordlists as well**](https://wordlists.assetnote.io/)
 
@@ -288,6 +288,6 @@ At this point, it's rinse and repeat of fuzzing for directories and then fuzzing
 
 Our goal in this phase was to give ourselves a decent attack surface. This is probably the most widely covered phase within the web application testing realm and is by far the easiest. 
 
-Once you have a sufficent number of endpoints to examine, you will want to move into the next phase: Identifying Data Entry Points. We will take interesting sites and strive to fully understand the application and frameworks involved. Once we understand the access controls, we can examine them for flaws.
+Once you have a sufficient number of endpoints to examine, you will want to move into the next phase: Identifying Data Entry Points. We will take interesting sites and strive to fully understand the application and frameworks involved. Once we understand the access controls, we can examine them for flaws.
 
 This phase will be documented in the Application Hacking Methodology Part 2. 
