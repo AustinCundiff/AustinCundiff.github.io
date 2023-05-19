@@ -25,7 +25,7 @@ In this guide, I hope to highlight some common pitfalls when approaching a targe
 ## Filtering Out the Noise
 
 ### Our Goals for this phase
-
+* Manually visit each online domain 
 * Find and remove static assets that are unlikely to provide us a way of interacting in a meaningful way
 * Curate a list of interesting assets to examine
 
@@ -41,11 +41,23 @@ Pre-requisites from the recon phase:
 Many bug hunters and web application testers often run into a wall after the recon phase. This is in part due to there not being a deterministic method to finding interesting assets. As you gain experience, you will 
 develop a sense for what to ignore and what to target. However, during the first few months of testing against production environments, it is easy to get lost in the sauce. 
 
-#### Tip \#1: Skip Content Management Systems (CMS)
+#### Tip \#1: Skip Content Management Systems (CMS), Blogs, & News
 
-Unless you are testing for specific known bugs such as the Elementor DOM XSS, xmlrpc, or drupaggedon, I would avoid testing a CMS such as Wordpress, Drupal, AEM, or Joomla. The majority of the content you tend to find on these 
-systems is static in nature. They are great tools for distributing static content and are pretty hardened these days. However, there are not usually entry points for you to get payloads to server-side code. 
+Unless you are testing for specific known bugs such as the Elementor DOM XSS, xmlrpc, or drupaggedon, I would avoid testing a CMS such as Wordpress, Drupal, AEM, or Joomla. The majority of the content you tend to find on these systems is static in nature and while they are great tools for distributing static content, they are pretty hardened these days. 
 
+As you go through your online assets, use [**Wappalyzer**](https://addons.mozilla.org/en-US/firefox/addon/wappalyzer/) to help you identify common CMS sites. If you find a particularly older CMS (>1 year out of date), there may be an unpatched vulnerability and it is usually worth a `nuceli -as -u http://cmssite.com` or a wpscan for Wordpress. Wordpress makes it easy to keep plugins up to date, so finding older Wordpress is uncommon.
+
+#### Tip \#2: Find Patterns in Asset Site Titles
+
+It is unlikely that a large organization will write unique code for each asset they expose to the internet. When scanning across large organizations, you will start to see patterns in titles and 
+content lengths from your Httpx scan. As you visit sites within your target scope, take note of common layouts and navigation systems. If you stumble upon a custom static site, there are likely more 
+sites using the same code base. Let's say you find a custom static site with a title like "subdomain.target.com Blog" and a content length of around 43000. You can use grep and anew to filter these sites:
+
+```sh
+cat online-asset-titles.txt | grep -Ev "\.target.com Blog|403[0-9][0-9]|Wordpress" | anew online-asset-titles-no-blogs.txt
+```
+
+As you discover more static assets, add these patterns to your grep line to keep filtering out noise and help you find useful assets.
 
 
 ![Shodan Query](/assets/shodan-query.JPG)
