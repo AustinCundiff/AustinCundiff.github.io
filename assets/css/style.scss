@@ -2,3 +2,45 @@
 ---
 
 @import 'jekyll-theme-hacker';
+/* Styling for the post cards */
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px; /* Adds space between the cards */
+}
+
+.post.card {
+  background-color: -webkit-linear-gradient(top, rgba(40,40,40,0.3), rgba(35,35,35,0.3) 50%, rgba(10,10,10,0.3) 50%, rgba(0,0,0,0.3)); /* Light background color for the card */
+  border: 1px solid #ddd; /* Subtle border around the card */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Space inside the card */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a shadow to the card */
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.post.card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* Styling for the post titles */
+.post.card h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.post.card .entry {
+  font-size: 1em;
+  margin-bottom: 15px;
+  color: #666;
+}
+
+/* Styling for the read more link */
+.post.card .read-more {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.post.card .read-more:hover {
+  text-decoration: underline;
+}
+
