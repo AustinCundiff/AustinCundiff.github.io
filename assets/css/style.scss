@@ -8,6 +8,29 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px; /* Adds space between the cards */
 }
+ul {
+  list-style: none; /* Remove default bullets */
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  background: rgba(255, 255, 255, 0.1); /* Light, semi-transparent background for list items */
+  border: 1px solid #FF77E9; /* Pink border to match the theme */
+  border-radius: 8px; /* Rounded corners for list items */
+  padding: 10px 15px; /* Padding inside list items */
+  margin-bottom: 10px; /* Space between list items */
+  color: #FFFFFF; /* White text for readability */
+  font-size: 16px; /* Font size for list items */
+  font-family: 'Monaco', 'Bitstream Vera Sans Mono', 'Lucida Console', Terminal, monospace;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for a floating effect */
+  transition: background 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+}
+
+ul li:hover {
+  background: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+}
 html, body {
   height: 100%;
   margin: 0;
