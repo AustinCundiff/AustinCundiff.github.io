@@ -1,7 +1,7 @@
 ---
 layout: default
-title:  "Application Hacking Part 1: Recon"
-date:   2022-10-25 11:02:21 +0100
+title:  "Mapping Terrain With In-depth Recon"
+date:   2024-08-19 11:02:21 +0100
 author: Sysdum
 ---
 
