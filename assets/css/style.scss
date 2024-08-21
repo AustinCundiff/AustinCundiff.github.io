@@ -33,6 +33,19 @@ header h1 {
     margin-left: 0;
   }
 }
+header h1:before {
+  content: "# ";
+  font-size: 24px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  color: #FF77E9;
+  letter-spacing: -0.03em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+               0 0 5px rgba(181, 232, 83, 0.1),
+               0 0 10px rgba(181, 232, 83, 0.1);
+}
 .post.card {
   background-color: -webkit-linear-gradient(top, rgba(40,40,40,0.3), rgba(35,35,35,0.3) 50%, rgba(10,10,10,0.3) 50%, rgba(0,0,0,0.3)); /* Light background color for the card */
   border: 1px solid #ddd; /* Subtle border around the card */
