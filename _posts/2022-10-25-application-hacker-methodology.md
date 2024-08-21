@@ -1,11 +1,11 @@
 ---
 layout: default
-title:  "Mapping Terrain With In-depth Recon"
+title:  "Mapping Terrain With In-Depth Recon"
 date:   2024-08-19 11:02:21 +0100
 author: Sysdum
 ---
 
-## Mapping Terrain With In-depth Recon
+## Mapping Terrain With In-Depth Recon
 
 ### Introduction
 
