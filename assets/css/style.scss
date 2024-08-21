@@ -8,6 +8,15 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px; /* Adds space between the cards */
 }
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #2D2D44, #3A3350 40%, #372248 60%, #292342);
+  color: #eaeaea;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+}
 
 header {
   background: rgba(0, 0, 0, 0.1);
