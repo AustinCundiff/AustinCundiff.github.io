@@ -8,8 +8,4 @@ header_page_refs: ['about', 'contact']
 github_username: "AustinCundiff"
 twitter:
   username: systemDumb
-cayman-blog:
-  date_format: "%b %-d, %Y"
-theme:
-plugins:
-  - jekyll-target-blank
+theme: hacker
