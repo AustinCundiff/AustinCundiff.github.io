@@ -6,24 +6,23 @@ layout: default
 
   {{ content }}
 
-  <h2>Latest Posts</h2>
+  <h2>Articles</h2>
 
   <div>&nbsp;</div>
 
-<div class="posts">                                                                                                                                                                                                                        
-   {% for post in site.posts %}                                                                                                                                                                                                             
-     <article class="post">                                                                                                                                                                                                                 
+  <div class="posts">                                                                                                                                                                                                                        
+    {% for post in site.posts %}                                                                                                                                                                                                             
+      <article class="post card">                                                                                                                                                                                                                 
                                                                                                                                                                                                                                             
-       <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>                                                                                                                                                             
+        <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>                                                                                                                                                             
                                                                                                                                                                                                                                             
-       <div class="entry">                                                                                                                                                                                                                  
-         {{ post.content | strip_html | truncatewords: 50 }}                                                                                                                                                                                
-       </div>                                                                                                                                                                                                                               
+        <div class="entry">                                                                                                                                                                                                                  
+          {{ post.content | strip_html | truncatewords: 50 }}                                                                                                                                                                                
+        </div>                                                                                                                                                                                                                               
                                                                                                                                                                                                                                             
-       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>                                                                                                                                                           
-     </article>                                                                                                                                                                                                                             
-   {% endfor %}                                                                                                                                                                                                                             
- </div>
- 
+        <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>                                                                                                                                                           
+      </article>                                                                                                                                                                                                                             
+    {% endfor %}                                                                                                                                                                                                                             
+  </div>
 
 </div>
