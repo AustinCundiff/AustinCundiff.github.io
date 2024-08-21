@@ -1,6 +1,6 @@
 ---                                                                                                                                                                                                                                   
 layout: default
-title:  "Backend Parameter Injection --> RCE"
+title:  "RCE Via Backend Parameter Injection"
 date:   2023-03-14 11:02:21 0100
 author: Sysdum
 ---  
