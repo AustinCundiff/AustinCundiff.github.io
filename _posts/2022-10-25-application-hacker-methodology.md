@@ -5,7 +5,7 @@ date:   2024-08-19 11:02:21 +0100
 author: Sysdum
 ---
 
-## Application Hacker Methodology Part 1: Recon
+## Mapping Terrain With In-depth Recon
 
 ### Introduction
 
