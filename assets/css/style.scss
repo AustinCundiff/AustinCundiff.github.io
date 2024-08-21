@@ -24,6 +24,16 @@ ul li {
   font-family: 'Monaco', 'Bitstream Vera Sans Mono', 'Lucida Console', Terminal, monospace;
   transition: background 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
 }
+ul li::before {
+  content: "–"; /* Dash character */
+  position: absolute; /* Position the dash absolutely */
+  left: 0; /* Align with the left edge of the li */
+  top: 50%; /* Vertically center the dash */
+  transform: translateY(-50%); /* Adjust vertical centering */
+  color: #FF77E9; /* Pink color for the dash */
+  font-size: 18px; /* Size of the dash */
+}
+
 
 ul li:hover {
   background: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
