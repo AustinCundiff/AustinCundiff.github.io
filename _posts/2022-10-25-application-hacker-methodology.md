@@ -9,22 +9,21 @@ author: Sysdum
 
 ### Introduction
 
-This guide is about assessing an organization's attack surface through the lens of application security. Web Application Firewalls (WAFs) and automated scanners have still not managed to solve the attack surface problem. These are both important tools in your arsenal, but I've seen critical vulnerabilities slip by every major WAF. Nuclei is a great way to scan your environment for the latest exchange 0-day, but if your recon is subpar, you might miss one. That is all that an adversary needs for a foothold in your environment.
+This guide is about assessing an organization's attack surface through the lens of application security. When I refer to attack surface, I mean the totality of endpoints that an organization has exposed to the public and are thus are able to be attacked. Most would agree that it is not glamorous to account for your devices and applications, but if an organization is not aware of an endpoint's existence, it will likely not receive regular updates and could easily become a weak point in your organization's defenses. I have noticed this trend time and again during assessments when I uncover an unpatched Jenkins or Exchange server that I then use to pivot into the internal network.
+
+It has been argued that Web Application Firewalls (WAFs) and automated scanners effectively mitigate the issue of exposed unpatched systems. These two tools do perform a necessary function, but their combination does not solve the attack surface problem, especially for large organizations. I have often encountered false negatives for popular scanners like Nessus and Nuclei as well as come across nasty access control vulnerabilities on forgotten systems that are unable to be protected by WAFs or discovered by scanners due to the nature of the vulnerability. In such cases, we need to incorporate some manual components into our defensive posture to ensure adequate coverage.
 
 The goal of this presentation is to demonstrate the application hacker's methodology and hopefully provide perspective on how hackers hunt your apps. Attackers generally want to break a mixture of Confidentiality, Integrity, or Availability (CIA) and thus our approach should focus on answering questions similar to the following:
 * Does this data entry point allow us to affect the integrity of the application's data?
 * Can we abuse this functionality to cause a denial of service?
-* Should this information be available to us? Can we circumvent an access control to access confidential information?
+* Should this information be available to us? Can we circumvent an access control to obtain confidential information?
 
-Ultimately the answers to these questions depend on what the organization defines as acceptable. Hence, it is generally a good idea to identify what types of information the organization cares about before assessing application security. For instance, if the target organization is a government entity, they may not care if someone can abuse an IDOR bug to retrieve public documents because they are intended to be viewed by everyone. We should focus on endpoints and bug classes that can impact one of the pillars of the CIA triad in a meaningful way.
+Ultimately the answers to these questions depend on what the organization defines as acceptable. Hence, it is generally a good idea to identify what types of information the organization finds important. For instance, if the target organization is a government entity, they may not care if someone can abuse an Insecure Direct Object Reference (IDOR) bug to retrieve public documents because they are intended to be viewed by everyone. However, the same bug may be immediately fixed if it can also retrieve internal meeting minutes or Personally Identifiable Information. We should focus on endpoints and bug classes that can impact one of the pillars of the CIA triad in a way that the target organization finds meaningful.
 
-### Roadmap
-- Reconnaissance 🕵️
-- Content Discovery 🔭
 
 ## Reconnaissance 🕵
 
->Note: This guide is focused on application security. Thus, We will not be covering phishing, social engineering, or post-exploitation.
+>Note: This guide is focused on application security. Thus, I will not be covering phishing, social engineering, or post-exploitation in this guide.
 
 ### Our Goals for this phase
 
